@@ -1,0 +1,13 @@
+<div>
+    <div *ngFor="let player of players" style="display: flex; padding: 1em; margin: .2em 0; background-color: #cacaca;">
+        <img src="{{ player.thumbnail }}" width="100"/>
+        <div style="margin-left: 1em;">
+            <strong> {{ player.name }} </strong>
+            <ul>
+                <li> {{ player.position }} </li>
+                <li> birthDate:  {{ player.born | date:'YYYY-MM-dd'}} </li>
+                <li> price : {{ player.signin.amount | currency:(player.signin.currency | uppercase)}} </li>   
+            </ul>
+        </div>
+    </div>
+</div>

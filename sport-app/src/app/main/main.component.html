@@ -1,0 +1,24 @@
+<input type="text"
+       id="search"
+       placeholder="Pick one"
+       aria-label="Number"
+       matInput
+       [formControl]="searchForm"
+       [matAutocomplete]="auto"
+       [style]="searchBtnStyle"
+       #keyword
+       (keyup)="doUpdateOptions(keyword.value)"
+       >
+
+<div> 
+    <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of options" [value]="option.name" (click)="doSelectTeam(option)">
+          {{ option.name }}
+        </mat-option>
+      </mat-autocomplete>
+</div>
+<div>
+    <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile [style]="tileStyle" *ngFor="let team of teams"> <img src="{{team.thumbnail}}" width="80" alt="team.name" (click)="doShowPlayers(team)"/> </mat-grid-tile>
+      </mat-grid-list>
+</div>
