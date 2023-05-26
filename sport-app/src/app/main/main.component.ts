@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { LeagueService } from 'src/services/leagues.service';
-import { take } from 'rxjs/operators'
+import { take } from 'rxjs/operators'
 import { Router } from '@angular/router';
+import { LeagueService } from 'src/service/league.service'
+import { Observable } from 'rxjs'
+import { League } from '../domain/league'
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -11,7 +13,7 @@ import { Router } from '@angular/router';
 export class MainComponent implements OnInit {
   options = [];
   teams = [];
-  leagues = [];
+  leagues$: Promise<League[]>
   searchForm = new FormControl()
   searchBtnStyle = {
     width: '100%'
@@ -23,32 +25,23 @@ export class MainComponent implements OnInit {
   constructor(private _leaguesService: LeagueService, private _router: Router) { }
   
   ngOnInit(): void {
+    this.doUpdateOptions(this.searchForm.value)
   }
   
-  doUpdateOptions(keyword) {
-    console.log(keyword)
-    this._leaguesService.getLeaguesByKeyword(keyword).pipe(
-      take(1)
-      ).subscribe(
-        (data) => {
-          this.options = data
-        },
-        (err) => {
-          console.log(err)
-        }
-        )
-      }
+  async doUpdateOptions(keyword) {
+    this.leagues$ = this._leaguesService.getLeaguesByKeyword(keyword)
+  }
       
       
-      doSelectTeam(league) {
-        this.teams = league.teams
-      }
+  doSelectTeam(league: League) {
+    this._router.navigateByUrl(`/league/${league._id}`)
+  }
 
 
-      doShowPlayers(team) {
-        this._router.navigateByUrl(`/team/${team._id}`)
-      }
-    }
+  doShowPlayers(team) {
+    this._router.navigateByUrl(`/team/${team._id}`)
+  }
+}
     
     
     

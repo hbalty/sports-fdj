@@ -1,13 +1,7 @@
 <div>
-    <div *ngFor="let player of players" style="display: flex; padding: 1em; margin: .2em 0; background-color: #cacaca;">
-        <img src="{{ player.thumbnail }}" width="100"/>
-        <div style="margin-left: 1em;">
-            <strong> {{ player.name }} </strong>
-            <ul>
-                <li> {{ player.position }} </li>
-                <li> birthDate:  {{ player.born | date:'YYYY-MM-dd'}} </li>
-                <li> price : {{ player.signin.amount | currency:(player.signin.currency | uppercase)}} </li>   
-            </ul>
-        </div>
+    <div>
+        <mat-grid-list cols="2" rowHeight="2:1">
+            <mat-grid-tile [style]="tileStyle" *ngFor="let team of teams$ | async"> <img src="{{team.thumbnail}}" width="80" alt="team.name" (click)="doNavigateToDetails(team)"/> </mat-grid-tile>
+          </mat-grid-list>
     </div>
 </div>

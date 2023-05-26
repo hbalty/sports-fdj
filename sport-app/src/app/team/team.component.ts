@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { PlayerService } from 'src/services/players.service';
+import { ActivatedRoute, ActivatedRouteSnapshot, Route, Router } from '@angular/router';
+import { Observable, map } from 'rxjs'
+import { PlayerService } from 'src/service/player.service';
+import { Player } from '../domain/player'
+import { TeamService } from 'src/service/team.service'
+import { Team } from '../domain/team'
 
 @Component({
   selector: 'app-team',
@@ -8,23 +12,17 @@ import { PlayerService } from 'src/services/players.service';
   styleUrls: ['./team.component.css']
 })
 export class TeamComponent implements OnInit {
-  players = []
-  constructor(private aRoute: ActivatedRoute, private _playerService: PlayerService) { }
+  teams$: Promise<Team[]>
+  constructor(private aRoute: ActivatedRoute, private router: Router, private teamService: TeamService) { }
 
   ngOnInit(): void {
-    this.aRoute.params.subscribe(
-      params => {
-        this._playerService.getPlayersByTeam(params.teamId).subscribe(
-          players => {
-            this.players = players
-          },
-          err => {
-            console.error(err)
-          } 
-        )
-      }
-    )
+    this.aRoute.paramMap.subscribe((data) => {
+      const leagueId = data.get('leagueId')
+      if (leagueId) this.teams$ = this.teamService.getTeamsByLeague(leagueId)  
+    })
   }
-    
 
+  doNavigateToDetails(team: Team) {
+    this.router.navigate(['team' + '/' +  team._id])
+  }
 }

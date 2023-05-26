@@ -11,12 +11,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TeamComponent } from './team/team.component'
 import { RouterModule } from '@angular/router';
+import { TeamDetailsComponent } from './team-details/team-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    TeamComponent
+    TeamComponent,
+    TeamDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,82 @@
+# compiled output
+sport-api/dist
+sport-api/node_modules
+
+# Logs
+sport-apilogs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+
+# Tests
+sport-api/coverage
+sport-api/.nyc_output
+
+# IDEs and editors
+sport-api/.idea
+sport-api.project
+sport-api.classpath
+sport-api.c9/
+sport-api*.launch
+sport-api.settings/
+sport-api*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+sports-app/dist
+sports-app/tmp
+sports-app/out-tsc
+# Only exists if Bazel was run
+sports-app/bazel-out
+
+# dependencies
+sports-app/node_modules
+
+# profiling files
+chrome-profiler-events*.json
+speed-measure-plugin*.json
+
+# IDEs and editors
+sports-app/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# misc
+sports-app/.sass-cache
+sports-app/connect.lock
+sports-app/coverage
+sports-app/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+sports-app/typings
+
+# System Files
+sports-app/.DS_Store
+sports-app/Thumbs.db
